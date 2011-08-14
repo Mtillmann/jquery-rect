@@ -1,0 +1,117 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8">
+	<title>jquery rect example</title>
+	<style type="text/css">
+		div{
+			position:absolute;
+			outline:1px solid #888;
+			background:rgba(0,0,0,0.4);
+			text-align:center;
+			color:#fff;
+			font-family:sans-serif;
+			font-size:24px;
+		}
+		
+		#a{
+			width:400px;
+			height:400px;
+			top:0px;
+			left:0px;
+			line-height:400px;
+		}
+		
+		#b{
+			width:250px;
+			height:250px;
+			top:50px;
+			left:50px;
+			line-height:250px;
+		}
+		
+		#c{
+			width:50px;
+			height:50px;
+			top:25px;
+			left:25px;
+			line-height:50px;
+		}
+		#d{
+			width:50px;
+			height:50px;
+			right:25px;
+			top:25px;
+			line-height:50px;
+		}
+		#e{
+			width:50px;
+			height:50px;
+			right:-25px; /* ! */
+			bottom:-25px;
+			line-height:50px;
+		}
+		
+		textarea{
+			width:400px;
+			position:absolute;
+			left:450px;
+			top:0px;
+			height:400px;
+			border:none;
+			padding:0px;
+			margin:0px;
+			background:#ddd;
+			font-family:sans-serif;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script src="jquery-rect.min.js"></script>
+	<script>
+	$(document).ready( function(){
+		
+		var ids = ['#a','#b','#c','#d','#e'], text = [], i, j, r, intersection;
+		
+		for( i = 0; i < ids.length; i++ ){
+			r = new $.rect( $( ids[i] ) );
+			
+			for( j = 0; j < ids.length; j++ ){
+				if( ids[i] != ids[j] ){
+					if( r.intersects( $( ids[j] ) ) ){
+						intersection = r.intersection( $( ids[j] ) );
+						text.push( ids[i] + ' intersects ' + ids[j] + ' (' + 
+							'left: ' + intersection.left +
+							', top: ' + intersection.top +
+							', width: ' + intersection.width +
+							', height: ' + intersection.height 
+						 +')'
+						 );
+					}
+				}
+			}
+			text.push('----------');
+		}
+		
+		
+		$('textarea').val( text.join("\n") );
+		
+		
+		
+		
+		
+		
+		
+	});
+	
+	</script>
+
+</head>
+<body>
+<div id="a">A
+	<div id="b">B</div>
+	<div id="c">C</div>
+	<div id="d">D</div>
+	<div id="e">E</div>
+</div>
+<textarea></textarea>
+</body>
+</html> 

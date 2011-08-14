@@ -17,7 +17,7 @@ new $.rect($('#someElement')).intersection($('#otherElement'));
 the intersection-method accepts a second parameter called type. Possible values are "box" and "rect"(default). "box" will return an object that represents a box (top, right, bottom, left), "rect" will return an object that represents a css-compatible rectangle (left, top, width, height).
 
 ##Options
-there are three options that can be passed as an object to the second parameter:
+there are three options that can be passed as the second argument:
 
 ###position
 Which jQuery method should be used to determine the element positions. Possible values are "offset" and "position"(default). See jQuery's docs.
@@ -28,5 +28,11 @@ Which jQuery method should be used to determine the element dimensions. Possible
 ###withMargin
 Passed to *outerWidth*/*outerHeight* to include margin in calculation. Defaults to **true**.
 
-
+```javascript
+new $.rect($('#someElement'),{
+	position : 'position',
+	dimension : 'outer',
+	withMargin : true
+});
+```
 

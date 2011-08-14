@@ -36,3 +36,5 @@ new $.rect($('#someElement'),{
 });
 ```
 
+
+Based on [jQuery boilerplate](http://jqueryboilerplate.com/) and inspired by google's [closure library](http://code.google.com/intl/de-DE/closure/library/)

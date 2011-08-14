@@ -3,12 +3,14 @@ Test if two elements intersect and optionally receive the a *.css()*-ready objec
 
 ##basic intersect test
 simply returns whether the two elements intersect:
+
 ```javascript
 new $.rect($('#someElement')).intersects($('#otherElement')); 
 ```
 
 ##using intersection
 receive the intersecting rectangle from the two elements:
+
 ```javascript
 new $.rect($('#someElement')).intersection($('#otherElement'));
 ```

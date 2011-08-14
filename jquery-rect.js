@@ -5,7 +5,7 @@
 		var plugin = this;
 		var defaults = {
 			position : 'position',
-			dimension : 'offset',
+			dimension : 'outer',
 			withMargin : true
 		};
 
@@ -13,7 +13,7 @@
 
 		var init = function() {
 			plugin.settings = $.extend({}, defaults, options);
-			plugin.el = elem;
+			plugin.el = elem;	
 		}
 
 		plugin.getRect = function( elem ){
@@ -60,15 +60,21 @@
 		}
 		
 		var getDimensions = function( el ){
-			if( plugin.settings.dimension != 'css' )
-				return {
+			return plugin.settings.dimension != 'css'?
+				{
 					width : $( el ).outerWidth( plugin.settings.withMargin ),
 					height : $( el ).outerHeight( plugin.settings.withMargin )
+				}:{
+					width : $( el ).css('width'),
+					height : $( el ).css('height')
 				};
-			return {
-				width : $( el ).css('width'),
-				height : $( el ).css('height')
-			};
+		}
+		
+		var getArea = function( obj ){
+			if( !obj.width && !obj.height ){
+				return (obj.right - obj.left) * (obj.bottom - obj.top);
+			}
+			return obj.width * obj.height;
 		}
 		
 		plugin.intersects = function( el, returnBoxes ){
@@ -115,6 +121,14 @@
 					if( type == 'box' ){
 						return iBox;
 					}
+					
+					if( type == 'portion' ){
+						var areaA = getArea( a ),
+						areaB = getArea(toRect( iBox ));
+						return areaB / areaA;
+						//return Math.min( areaA, areaB ) / Math.max( areaA, areaB);
+					}
+					
 					return toRect( iBox );
 				}
 			}

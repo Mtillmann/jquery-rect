@@ -1,3 +1,8 @@
+/*!
+  * jquery rect (c) Martin Tillmann
+  * https://github.com/mtillmann/jquery-rect
+  * MIT License
+*/
 ;(function($) {
 
 	$.rect = function(elem,options) {

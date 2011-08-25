@@ -32,7 +32,7 @@
 		var toRect = function( box ){
 			return {
 				left : box.left,
-				top : box.left,
+				top : box.top,
 				width : box.right - box.left,
 				height: box.bottom - box.top
 			};
@@ -101,7 +101,7 @@
 			return false;
 		}
 		
-		plugin.intersection = function( el, type ){
+		plugin.intersection = function( el, type, positionParent ){
 			var boxes = plugin.intersects( el, true );
 			
 			if(!boxes)return false;
@@ -109,7 +109,7 @@
 			var a = boxes[0], b = boxes[1], 
 			x0 = Math.max(a.left, b.left),
 			x1 = Math.min(a.right, b.right),
-			y0, y1, iRect;
+			y0, y1, iBox;
 
 			if (x0 <= x1) {
 				y0 = Math.max(a.top, b.top);
@@ -131,7 +131,6 @@
 						var areaA = getArea( a ),
 						areaB = getArea(toRect( iBox ));
 						return areaB / areaA;
-						//return Math.min( areaA, areaB ) / Math.max( areaA, areaB);
 					}
 					
 					return toRect( iBox );

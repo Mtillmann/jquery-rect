@@ -15,6 +15,7 @@ receive the intersecting rectangle from the two elements:
 new $.rect($('#someElement')).intersection($('#otherElement'));
 ```
 the intersection-method accepts a second parameter called type. Possible values are "box" and "rect"(default). "box" will return an object that represents a box (top, right, bottom, left), "rect" will return an object that represents a css-compatible rectangle (left, top, width, height).
+"portion" will return the intersection area as percent, 1 being fully covered, 0.5 being half etc
 
 ##Options
 there are three options that can be passed as the second argument:
